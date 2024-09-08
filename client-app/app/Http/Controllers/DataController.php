@@ -25,7 +25,7 @@ class DataController extends Controller
             return response()->json(['status' => 'error', 'message' => $encryptedPayload['error']], 400);
         }
 
-        $response = Http::post('http://127.0.0.1:8000/api/decrypt', $encryptedPayload);
+        $response = Http::post(env('SERVER_BASE_URL', 'http://localhost:8000').'/api/decrypt', $encryptedPayload);
 
         if ($response->status() !== 200) {
             return response()->json(['status' => 'error', 'message' => $response->json('message')], $response->status());

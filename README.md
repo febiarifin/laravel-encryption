@@ -7,12 +7,12 @@ Combining RSA + AES Encryption to secure REST Endpoint With Sensitive Data
 ```
 openssl genpkey -algorithm RSA -out storage/keys/private_key.pem -pkeyopt rsa_keygen_bits:2048
 openssl rsa -pubout -in storage/keys/private_key.pem -out storage/keys/public_key.pem
-
 ```
 
 - Copy server-app/storage/keys/public_key.pem to client-app/storage/keys/public_key.pem
 - Run command on server-app `php artisan serve --port=8000`
 - Run command on client-app `php artisan serve --port=8001`
+- Add `SERVER_BASE_URL=YOUR_BASE_URL` to .env on client-app
 - Now hit endpoint from client-app 
     - Method `POST`
     - Base url `http://localhost:8001/api/send-encrypted-data`  
